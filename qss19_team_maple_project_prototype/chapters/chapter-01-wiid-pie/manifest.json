@@ -1,0 +1,31 @@
+{
+  "id": "chapter-01-wiid",
+  "title": "WIID Asia Quintiles \u2014 Pie Chart by Decade",
+  "order": 1,
+  "namespace": "c01",
+  "steps": [
+    {
+      "id": "c01-step-01",
+      "label": "Maple trees filter!",
+      "text": "Your first important text about maple trees! This project is amazing and important!"
+    },
+    {
+      "id": "c01-step-02",
+      "label": "PFAS are dangerous!",
+      "text": "The second important set of info about trees, forever chemicals, or more about the project more generally."
+    },
+    {
+      "id": "c01-step-03",
+      "label": "We can filter through sugaring to find PFAS concentrations!",
+      "text": "More info! We can learn about nature and ourselves through this project."
+    },
+    {
+      "id": "c01-step-04",
+      "label": "What's next in the story?",
+      "text": "Text to finish off the chapter. This text should help us bridge to Chapter 2!"
+    }
+  ],
+  "dataFiles": [
+    "data/wiid_asia_quintiles_decades.csv"
+  ]
+}

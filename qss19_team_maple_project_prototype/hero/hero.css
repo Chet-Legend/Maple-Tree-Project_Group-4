@@ -1,0 +1,50 @@
+.hero{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-mount{
+  height: 100%;
+  width: 100%;
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.hero-card{
+  width: min(820px, calc(100vw - 40px));
+  background: rgba(255, 255, 255, 0.787);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgb(225, 216, 216);
+  border-radius: 18px;
+  padding: 22px 20px;
+  text-align: center;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+}
+
+.hero-card h2{
+  margin: 0 0 10px 0;
+  font-size: 26px;
+  letter-spacing: 0.3px;
+}
+
+.hero-card p{
+  margin: 0;
+  opacity: 0.8;
+  font-size: 14.5px;
+}
+
+.scroll-cue{
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: 0.75;
+}
