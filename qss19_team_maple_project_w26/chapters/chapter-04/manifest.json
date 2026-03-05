@@ -1,0 +1,60 @@
+{
+  "id": "chapter-04",
+  "title": "Maple Syrup Production",
+  "order": 4,
+  "namespace": "c04",
+  "steps": [
+    {
+      "id": "c04-step-01",
+      "label": "Add Title Here",
+      "text": "Each point is positioned along the x-axis by PFAS concentration. At this point, they are simulated data."
+    },
+    {
+      "id": "c04-step-02",
+      "label": "Add Title Here",
+      "text": "We can color (or separate) samples by site, treatment, or year to compare distributions."
+    },
+    {
+      "id": "c04-step-03",
+      "label": "Add Title Here",
+      "text": "Beeswarms make it easy to spot high concentration outliers. I have no idea what numbers represent outliers yet, so these data are just a quick simulation!"
+    },
+    {
+      "id": "c04-step-04",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-05",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-06",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-07",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-08",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-09",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    },
+    {
+      "id": "c04-step-10",
+      "label": "Add Title Here",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    }
+
+  ],
+  "dataFiles": []
+}
