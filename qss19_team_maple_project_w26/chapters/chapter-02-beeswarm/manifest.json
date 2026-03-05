@@ -1,0 +1,29 @@
+{
+  "id": "chapter-02-beeswarm",
+  "title": "Maple Samples as a Beeswarm",
+  "order": 2,
+  "namespace": "c02",
+  "steps": [
+    {
+      "id": "c02-step-01",
+      "label": "Each point is a tree. Each tree is a sample. So, one point is one sample!",
+      "text": "Each point is positioned along the x-axis by PFAS concentration. At this point, they are simulated data."
+    },
+    {
+      "id": "c02-step-02",
+      "label": "Group the samples",
+      "text": "We can color (or separate) samples by site, treatment, or year to compare distributions."
+    },
+    {
+      "id": "c02-step-03",
+      "label": "Highlight extremes",
+      "text": "Beeswarms make it easy to spot high concentration outliers. I have no idea what numbers represent outliers yet, so these data are just a quick simulation!"
+    },
+    {
+      "id": "c02-step-04",
+      "label": "Uncertainty matters, especially in PFAS measurement!",
+      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+    }
+  ],
+  "dataFiles": []
+}
