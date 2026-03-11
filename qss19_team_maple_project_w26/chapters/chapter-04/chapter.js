@@ -1,7 +1,7 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 export function createChapter() {
-  // --- internal state ---
+  // internal state
   let root, svgOuter, svg, g;
   let width = 900, height = 560;
   const margin = { top: 28, right: 24, bottom: 56, left: 64 };
@@ -12,8 +12,6 @@ export function createChapter() {
   const smallPic = {x: 20, y: 20, dim: 175, gap: 20};
   const images = ["tree", "house", "filter", "boiling", "filter", "syrup", "eat"];
   const imgPath = "chapters/chapter-04/Maple-Images/";
-
-
 
   function renderBase() {
     svg.selectAll("*").remove();
@@ -30,71 +28,86 @@ export function createChapter() {
     .attr("fill", "#666");
 
     g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
-    
   }
 
   // General function that shows the new step in the middle and moves the previous step to the top
   function changeMainImage(step) {
-    if (step != 1) {
-      g.selectAll("image")
+    // Manage history (the small pics at the top)
+    const historyData = images.slice(0, step - 1);
+    const smallPics = g.selectAll("image.small-pic")
+      .data(historyData, (d, i) => i);
+
+    // Handles the undo when scrolling back up
+    smallPics.exit().remove();
+
+    smallPics.enter()
+      .append("image")
       .attr("class", "small-pic")
+      .attr("xlink:href", d => imgPath + d + ".svg")
+      .merge(smallPics)
       .transition()
       .duration(600)
       .attr("x", (d, i) => smallPic.x + i * (smallPic.dim + smallPic.gap))
       .attr("y", smallPic.y)
       .attr("width", smallPic.dim)
-      .attr("height", smallPic.dim);
+      .attr("height", smallPic.dim)
+      .attr("opacity", 1);
 
-      setTimeout(() => drawArrows(step), 300);
+    // Manage current main image
+    const mainData = (step > 0 && step <= images.length) ? [images[step - 1]] : [];
+    const mainPic = g.selectAll("image.main-pic").data(mainData, d => d);
+
+    mainPic.exit().remove();
+
+    if (step < 8) {
+      mainPic.enter()
+        .append("image")
+        .attr("class", "main-pic")
+        .attr("xlink:href", d => imgPath + d + ".svg")
+        .attr("x", main_img.x)
+        .attr("y", main_img.y)
+        .attr("height", main_img.height)
+        .attr("opacity", 0)
+        .transition()
+        .duration(600)
+        .attr("opacity", 1);
     }
 
-
-    g.selectAll("image.main-pic").remove();
-
-    if (step==8) return;
-
-    g.append("image")
-    .attr("class", "main-pic")
-    .attr("xlink:href", imgPath + images[step-1] + ".svg")
-    .attr("x", main_img.x)
-    .attr("y", main_img.y)
-    .attr("height", main_img.height)
-    .attr("opacity", 0)
-    .transition()
-    .duration(600)
-    .attr("opacity", 1);
-
     // TODO: Flag the images as contaminant/removal here probably
+    drawArrows(step);
   }
 
   function drawArrows(step) {
-    if (step < 2) return;
+    if (step < 2) {
+      g.selectAll("line.arrow").remove();
+      return;
+    }
   
-    const arrowLayer = g.selectAll("g.arrow-layer").data([null]);
-    arrowLayer.join("g").attr("class", "arrow-layer");
-  
-    const arrows = g.select("g.arrow-layer")
-      .selectAll("line.arrow")
-      .data(d3.range(step - 2), d => d);
-  
-    arrows.join(
-      enter => enter
-        .append("line")
-        .attr("class", "arrow")
-        .attr("stroke", "#666")
-        .attr("stroke-width", 2)
-        .attr("marker-end", "url(#arrowhead)"),
-      update => update,
-      exit => exit.remove()
-    )
-    .attr("x1", (d) => smallPic.x + d * (smallPic.dim + smallPic.gap) + smallPic.dim)
-    .attr("y1", smallPic.y + smallPic.dim / 2)
-    .attr("x2", (d) => smallPic.x + (d + 1) * (smallPic.dim + smallPic.gap))
-    .attr("y2", smallPic.y + smallPic.dim / 2);
+    const arrowCount = Math.max(0, step - 2);
+    const arrowData = d3.range(arrowCount);
+
+    const arrows = g.selectAll("line.arrow")
+      .data(arrowData, d => d);
+
+    arrows.exit().remove();
+
+    arrows.enter()
+      .append("line")
+      .attr("class", "arrow")
+      .attr("stroke", "#666")
+      .attr("stroke-width", 2)
+      .attr("marker-end", "url(#arrowhead)")
+      .merge(arrows)
+      .transition()
+      .duration(600)
+      .attr("x1", (d) => smallPic.x + d * (smallPic.dim + smallPic.gap) + smallPic.dim)
+      .attr("y1", smallPic.y + smallPic.dim / 2)
+      .attr("x2", (d) => smallPic.x + (d + 1) * (smallPic.dim + smallPic.gap))
+      .attr("y2", smallPic.y + smallPic.dim / 2)
+      .attr("opacity", 1);
   }
 
-  // --- Step behaviors ---
+  // Step behaviors
   function step01() {
     changeMainImage(1);
   }
@@ -128,8 +141,11 @@ export function createChapter() {
   }
 
   function step09() {
+    // Ensure all images are in the history state first
+    changeMainImage(8);
+
     // Shift images down to the middle of the screen
-    g.selectAll("image")
+    g.selectAll("image.small-pic")
       .transition()
       .duration(600)
       .attr("x", (d, i) => smallPic.x + i * (smallPic.dim + smallPic.gap))
@@ -137,7 +153,7 @@ export function createChapter() {
       .attr("width", smallPic.dim)
       .attr("height", smallPic.dim);
 
-    // Shift arrows too!
+    // Shift arrows too
     g.selectAll("line.arrow")
     .transition()
     .duration(600)
@@ -157,9 +173,13 @@ export function createChapter() {
   function applyStep(stepId) {
     currentStepId = stepId;
 
-    // You can match on exact ids from your manifest:
-    // c02-step-01 ... c02-step-04
-    // To add a new step, you must add it to the manifest, add it here, and then make the function
+    // Scrolling back up -> reset
+    const stepNum = parseInt(stepId.split('-').pop());
+    if (stepNum < 9) {
+      g.selectAll("image.small-pic").attr("y", smallPic.y);
+      g.selectAll("line.arrow").attr("y1", smallPic.y + smallPic.dim / 2).attr("y2", smallPic.y + smallPic.dim / 2);
+    }
+
     if (stepId === "c04-step-01") return step01();
     if (stepId === "c04-step-02") return step02();
     if (stepId === "c04-step-03") return step03();
@@ -189,9 +209,6 @@ export function createChapter() {
       .attr("viewBox", `0 0 ${width} ${height}`);
 
     svg = svgOuter.append("g");
-
-    // Load data if provided by main.js, else placeholder
-    // ctx.chapterData is an object keyed by dataFiles entries
 
     renderBase();
 
