@@ -6,18 +6,18 @@
   "steps": [
     {
       "id": "c04-step-01",
-      "label": "Add Title Here",
-      "text": "Each point is positioned along the x-axis by PFAS concentration. At this point, they are simulated data."
+      "label": "It All Starts With a Tree",
+      "text": "Maple trees pull water and nutrients up from the soil through their roots, and whatever is in that soil comes along for the ride. PFAS chemicals can enter through contaminated groundwater or soil, meaning the tree itself may be the very first stop on a long chemical journey. We hypothesize the tree acts as a filter — but how good of one? That's exactly what we're trying to find out!"
     },
     {
       "id": "c04-step-02",
-      "label": "Add Title Here",
-      "text": "We can color (or separate) samples by site, treatment, or year to compare distributions."
+      "label": "Home Sweet Sugar Shack",
+      "text": "Whether you're boiling in a backyard shed or on a kitchen stovetop, your setup is where sap gets transformed into syrup, and where new PFAS risks can enter the picture. Home equipment, tubing, fittings, and coated cookware may contain PFAS compounds. Beware, the materials we choose matter more than most of us realize."
     },
     {
       "id": "c04-step-03",
-      "label": "Add Title Here",
-      "text": "Beeswarms make it easy to spot high concentration outliers. I have no idea what numbers represent outliers yet, so these data are just a quick simulation!"
+      "label": "First Filter: Nature's Attempt",
+      "text": "Before you ever touch the sap, the tree itself has already done some filtering. As water moves from roots to trunk to tap, some compounds may get left behind in wood tissue. But 'some' is a stretch… PFAS are notoriously persistent and hard to remove."
     },
     {
       "id": "c04-step-04",
