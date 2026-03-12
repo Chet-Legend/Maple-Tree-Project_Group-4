@@ -6,8 +6,8 @@
   "steps": [
     {
       "id": "c04-step-01",
-      "label": "It All Starts With a Tree",
-      "text": "Maple trees pull water and nutrients up from the soil through their roots, and whatever is in that soil comes along for the ride. PFAS chemicals can enter through contaminated groundwater or soil, meaning the tree itself may be the very first stop on a long chemical journey. We hypothesize the tree acts as a filter — but how good of one? That's exactly what we're trying to find out!"
+      "label": "Tapping the Tree",
+      "text": "A small hole, a metal spout, a bucket or tubing line, and suddenly the tree's internal chemistry is exposed to the outside world. Tapping is where sap first meets your equipment. Each piece is a potential entry point for PFAS: spout coatings, collection tubing, and even the buckets you use all the way to the boiler. It's a small moment with real implications for what ends up on your breakfast table"
     },
     {
       "id": "c04-step-02",
@@ -21,38 +21,23 @@
     },
     {
       "id": "c04-step-04",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+      "label": "The Boil Down",
+      "text": "Here's where things get chemically interesting. To make one liter of maple syrup, you need roughly 40 liters of sap. All that water boils off over your stove or outdoor burner. But PFAS don't evaporate with the steam. They stay behind and concentrate. A compound that was undetectable in your raw sap might clearly show up after boiling. Important: this is concentration, not new contamination. The PFAS was always there, but now there's just enough to measure."
     },
     {
       "id": "c04-step-05",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+      "label": "Reverse Osmosis (Optional)",
+      "text": "Some home and small-scale producers use a reverse osmosis (RO) unit before boiling to pre-concentrate the sap and cut down on boiling time. RO is actually one of the few technologies capable of removing PFAS at the molecular level. If you use an RO system, you may be inadvertently reducing PFAS in your final syrup — though the removed PFAS ends up concentrated in the waste water. Either way, it's a step worth paying attention to."
     },
     {
       "id": "c04-step-06",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+      "label": "Into the Jar",
+      "text": "By the time your syrup is bottled, it has passed through soil, a living tree, your collection equipment, a filter, and a long boil. Each step was a chance for PFAS to enter or concentrate (or maybe be removed). The jar looks simple. The chemistry is not. We don't yet know exactly what ends up in home-produced syrup, but we're building the tools to find out, and home producers like you are a key part of the picture."
     },
     {
       "id": "c04-step-07",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
-    },
-    {
-      "id": "c04-step-08",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
-    },
-    {
-      "id": "c04-step-09",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
-    },
-    {
-      "id": "c04-step-10",
-      "label": "Add Title Here",
-      "text": "Next we’ll connect these distributions back to mechanisms: filtration, pathways, and uncertainty."
+      "label": "From Tree to Table",
+      "text": "Whether you tapped it yourself or grabbed it off a store shelf, the end result is the same: syrup on the table, shared with people you care about. The paths may look very different, but the chemicals present don't change."
     }
 
   ],
