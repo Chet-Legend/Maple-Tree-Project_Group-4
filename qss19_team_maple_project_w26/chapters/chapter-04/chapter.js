@@ -167,6 +167,18 @@ export function createChapter() {
   // Conclusion
   function step10() {
     // I added a placeholder pancake svg -> i think it would be awesome if we could somehow animate the syrup pouring onto the pancakes but that might be untrealistic...
+    g.append("image")
+    .attr("class", "main-pic")                     
+    .attr("xlink:href", "chapters/chapter-04/Maple-Images/pancakes.svg")
+    .attr("x", main_img.x)                         
+    .attr("y", main_img.y)
+    .attr("height", main_img.height)               
+    .attr("width", main_img.height * 1.2)          
+    .attr("preserveAspectRatio", "xMidYMid meet") 
+    .attr("opacity", 0)                            
+    .transition()
+    .duration(600)
+    .attr("opacity", 1);
   }
 
 
