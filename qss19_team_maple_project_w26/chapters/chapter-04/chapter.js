@@ -12,7 +12,42 @@ export function createChapter() {
   const smallPic = {x: 20, y: 20, dim: 175, gap: 20};
   const images = ["tree", "house", "filter", "boiling", "filter", "syrup", "eat"];
   const imgPath = "chapters/chapter-04/Maple-Images/";
+// KCB
+// I added this so each step knows what kind of flag should show up on the center image
+  const imageFlagsByStep = {
+    1: ["contamination"],
+    2: ["contamination"],
+    3: ["removal"],
+    4: ["contamination", "removal"],
+    5: ["removal"],
+    6: [],
+    7: []
+  };
 
+  // I added this for the arrows once everything moves to the center in step 9
+  const arrowFlags = [
+    "contamination",
+    "contamination",
+    "removal",
+    "contamination",
+    "removal",
+    "removal"
+  ];
+
+  // I just kept the colors/labels here so it is easier to change later if needed
+  const flagStyles = {
+    contamination: {
+      fill: "#d84b4b",
+      stroke: "#a52f2f",
+      label: "Contam."
+    },
+    removal: {
+      fill: "#65b96f",
+      stroke: "#3f8c49",
+      label: "Removal"
+    }
+  };
+//KCB
   function renderBase() {
     svg.selectAll("*").remove();
 
@@ -29,6 +64,88 @@ export function createChapter() {
 
     g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
   }
+  // KCB
+  // I added this so old center-image flags disappear before the new ones draw
+  function clearMainFlags() {
+    g.selectAll(".main-flag").remove();
+  }
+
+  // I added this so the step 9 arrow flags can be cleared when scrolling back up
+  function clearArrowFlags() {
+    g.selectAll(".arrow-flag").remove();
+  }
+
+  // I made one small helper for drawing the flag shape so I did not repeat the same code a bunch of times
+  function drawBadge({ x, y, type, cssClass }) {
+    const style = flagStyles[type];
+    if (!style) return;
+
+    const badge = g.append("g")
+      .attr("class", cssClass)
+      .attr("transform", `translate(${x},${y})`);
+
+    badge.append("line")
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", 0)
+      .attr("y2", 24)
+      .attr("stroke", "#555")
+      .attr("stroke-width", 2);
+
+    badge.append("path")
+      .attr("d", "M0,0 L58,0 L46,16 L58,32 L0,32 Z")
+      .attr("fill", style.fill)
+      .attr("stroke", style.stroke)
+      .attr("stroke-width", 1.5);
+
+    badge.append("text")
+      .attr("x", 28)
+      .attr("y", 20)
+      .attr("text-anchor", "middle")
+      .attr("font-size", "10px")
+      .attr("font-weight", 700)
+      .attr("fill", "#fff")
+      .text(style.label);
+  }
+
+  // I added this so the center image gets flagged on the steps where it is supposed to
+  function drawMainImageFlags(step) {
+    clearMainFlags();
+
+    const flags = imageFlagsByStep[step] || [];
+    if (!flags.length) return;
+
+    flags.forEach((type, i) => {
+      drawBadge({
+        x: main_img.x + 140 + i * 72,
+        y: main_img.y + 12,
+        type,
+        cssClass: "main-flag"
+      });
+    });
+  }
+
+  // I added this for step 9 so the arrows get tagged once they move into the center layout
+  function drawArrowFlagsStep9() {
+    clearArrowFlags();
+
+    const arrowY = smallPic.y + 300 + smallPic.dim / 2;
+
+    arrowFlags.forEach((type, i) => {
+      const x1 = smallPic.x + i * (smallPic.dim + smallPic.gap) + smallPic.dim;
+      const x2 = smallPic.x + (i + 1) * (smallPic.dim + smallPic.gap);
+      const midX = (x1 + x2) / 2 - 28;
+
+      drawBadge({
+        x: midX,
+        y: arrowY - 44,
+        type,
+        cssClass: "arrow-flag"
+      });
+    });
+  }
+
+  //KCB 
 
   // General function that shows the new step in the middle and moves the previous step to the top
   function changeMainImage(step) {
@@ -74,6 +191,14 @@ export function createChapter() {
     }
 
     // TODO: Flag the images as contaminant/removal here probably
+    //KCB
+     // I put the center-image flags here since this is where each new main image gets shown
+    drawMainImageFlags(step);
+
+    // I clear arrow flags here so they only show during step 9
+    clearArrowFlags();
+    //KCB
+
     drawArrows(step);
   }
 
@@ -160,12 +285,27 @@ export function createChapter() {
     .attr("y1", smallPic.y + 300 + smallPic.dim / 2)
     .attr("y2", smallPic.y + 300 + smallPic.dim / 2);
 
-      // TODO: Whoever is tagging the arrows can do that here.
-      // TODO: Also should probably label each image here: tree -> house -> filter, etc.
-  }
+   
+ // TODO: Whoever is tagging the arrows can do that here.
+  // TODO: Also should probably label each image here: tree -> house -> filter, etc.
 
+  // KCB
+  // I added the arrow flags here because this is the step where the arrows move into the middle
+  setTimeout(() => {
+    if (currentStepId === "c04-step-09") {
+      drawArrowFlagsStep9();
+    }
+  }, 620);
+  // KCB
+}
   // Conclusion
   function step10() {
+
+// KCB
+    clearMainFlags();
+    clearArrowFlags();
+//KCB
+
     // I added a placeholder pancake svg -> i think it would be awesome if we could somehow animate the syrup pouring onto the pancakes but that might be untrealistic...
     g.append("image")
     .attr("class", "main-pic")                     
@@ -190,6 +330,9 @@ export function createChapter() {
     if (stepNum < 9) {
       g.selectAll("image.small-pic").attr("y", smallPic.y);
       g.selectAll("line.arrow").attr("y1", smallPic.y + smallPic.dim / 2).attr("y2", smallPic.y + smallPic.dim / 2);
+    //KCB
+     clearArrowFlags();
+    //KCB
     }
 
     if (stepId === "c04-step-01") return step01();
